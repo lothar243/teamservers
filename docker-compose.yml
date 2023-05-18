@@ -1,0 +1,26 @@
+version: "3.4"
+
+services:
+  teamA:
+    image: teamserver:first
+    container_name: "teamAserver"
+    networks:
+      my-ipvlan-network:
+        ipv4_address: 10.100.100.201
+    hostname: teamAserver
+    tty: true
+    restart: always
+    volumes:
+      - ./teamA/config:/config
+      - ./teamA/blank:/etc/blank
+
+networks:
+  my-ipvlan-network:
+    driver: ipvlan
+    driver_opts:
+      ipvlan_mode: l2
+      parent: eth0
+    ipam:
+      driver: default
+      config:
+        - subnet: 10.100.100.0/24
