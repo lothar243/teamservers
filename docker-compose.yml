@@ -12,7 +12,7 @@ services:
     restart: always
     volumes:
       - ./teamA/config:/config
-      - ./teamA/blank:/etc/blank
+      - ./teamA/blank2:/etc/blank
 
 networks:
   my-ipvlan-network:
